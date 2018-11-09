@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <div class="container" id="boisko"
+         style="background-image: url({% static 'images/Boisko2.png' %}); float: left; text-align: center; background-size: contain; background-repeat:no-repeat; height:500px; width:500px;">
+        <h3>GRAMY: {{ game.dategame }}</h3>
+        <ol id="listagry" style="text-align: left">
+        </ol>
+        <ol id="footballers">
+            {% for footballer in players_in_game %}
+                <li id='pro{{ footballer.id }}'> {{ footballer.name }} </li>
+            {% endfor %}
+        </ol>
+
+    </div>
+    <div class="container" style="float: right">
+
+        <ol>
+            {% for player in players %}
+                <li style="color: black"> {{ player.name }}
+                    <button id="{{ player.id }}"
+                            onclick="addToGame('{{ player.name }}', {{ player.id }}, {{ game.id }} )"
+                            name="addtogame"
+                            {% if player in players_in_game %}
+                                disabled="true"
+                            {% endif %} >
+                        Zapisz się
+                    </button>
+                    <button id="rem{{ player.id }}"
+                            onclick="removefromGame('{{ player.name }}', {{ player.id }}, {{ game.id }} )"
+                            name="removefromgame"
+                            {% if player not in players_in_game %}
+                                disabled="true"
+                            {% endif %} >
+                        Zrezygnuj
+                    </button>
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+
+
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script>
+        var csrftoken = "{{ csrf_token }}";
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+        function removefromGame(playername, playerid, gameid) {
+            console.log(playername);
+            {#$('#boisko ol').append(`<li><a href="#">${playername}</a></li>`);#}
+            $(`#rem${playerid}`).prop('disabled', true);
+            $(`#${playerid}`).prop('disabled', false);
+            var num_of_players = $('#listagry').children()
+
+
+            $.ajax({
+                url: '/removeplayer/',
+                success: function (data) {
+                    $(`#pro${playerid}`).remove();
+                },
+                data: JSON.stringify({'playerid': playerid, 'gameid': gameid, 'playername': playername}),
+                type: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                dataType: "json",
+
+            });
+            {# {'playerid': '', } #}
+        }
+
+        function addToGame(playername, playerid, gameid) {
+            console.log(playername);
+            {#$('#boisko ol').append(`<li><a href="#">${playername}</a></li>`);#}
+            $(`#${playerid}`).prop('disabled', true);
+            $(`#rem${playerid}`).prop('disabled', false);
+            var num_of_players = $('#listagry').children()
+
+
+            $.ajax({
+                url: '/addtogame/',
+                success: function (data) {
+                    $('#footballers').append(`<li id="pro${playerid}">` + data.playername + '</li>');
+                },
+                data: JSON.stringify({'playerid': playerid, 'gameid': gameid, 'playername': playername}),
+                type: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                dataType: "json",
+
+            });
+            {# {'playerid': '', } #}
+        }
+
+    </script>
+{% endblock %}

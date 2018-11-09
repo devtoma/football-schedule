@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1366px" height="786px" viewBox="0 0 1366 786" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(0.000000, -252.000000)" fill-rule="nonzero">
+            <g id="Group" transform="translate(0.000000, 252.000000)">
+                <rect id="Obramowanie" stroke="#FFFFFF" stroke-width="20" fill="#2EA13D" x="10" y="10" width="1346" height="766"></rect>
+                <path d="M684.5,23 L684.5,770.5" id="Line" stroke="#FFFFFF" stroke-width="20" stroke-linecap="square"></path>
+                <rect id="Rectangle" stroke="#FFFFFF" stroke-width="20" fill="#2EA13D" x="10" y="280" width="141" height="227"></rect>
+                <rect id="Rectangle" stroke="#FFFFFF" stroke-width="20" fill="#2EA13D" x="1215" y="280" width="141" height="227"></rect>
+                <path d="M683,520 C612.859837,520 556,463.140163 556,393 C556,322.859837 612.859837,266 683,266 C753.140163,266 810,322.859837 810,393 C810,463.140163 753.140163,520 683,520 Z M683,503 C743.751322,503 793,453.751322 793,393 C793,332.248678 743.751322,283 683,283 C622.248678,283 573,332.248678 573,393 C573,453.751322 622.248678,503 683,503 Z" id="Combined-Shape" stroke="#FFFFFF" fill="#FFFFFF"></path>
+                <rect id="Rectangle-2" stroke="#979797" stroke-width="3" x="1.5" y="1.5" width="1363" height="783"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

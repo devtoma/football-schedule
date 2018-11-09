@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div style="display:flex; justify-content: center ">
+<div>
+{% for game in list_of_games %}
+   <h4> {{ game.place }} {{ game.dategame }} </h4>
+            {% for player in  game.player.all  %}
+               <ol>
+                   <li>{{ player.name }}</li>
+
+                </ol>
+                {% endfor %}
+
+{% endfor %}
+</div>
+</div>
+{% endblock %}

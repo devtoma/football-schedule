@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static '/style.css' %}" rel="stylesheet">
+    <style>
+       table, th, td {border: 2px solid grey; text-align: center}
+   </style>
+
+
+
+</head>
+<body>
+<div>
+    <nav style="width: 100%; height: 15%; background-color: olivedrab" >
+
+<ul style="display: inline-block">
+<li><a href="{% url  'main' %}">GŁÓWNA</a></li>
+<li><a href="{% url  'list-player' %}">ZAWODNICY</a></li>
+<li><a href="{% url  'add-player' %}">DODAJ ZAWODNIKA</a></li>
+<li><a href="link">PŁATNOŚCI</a></li>
+<li><a href="{% url  'game-list' %}">GRY</a></li>
+</nav>
+
+</div>
+{% block content %}
+{% endblock %}
+
+
+</body>
+</html>

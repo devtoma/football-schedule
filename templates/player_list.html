@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="jumbotron" style="margin: auto; width: 50%; padding: 10px">
+  <h3>LISTA GRACZY:</h3>
+      <table>
+    <tr>
+        <th>Zawodnik</th>
+        <th>Zawodnik</th>
+        <th>Opis</th>
+        <th>Email</th>
+        <th>Telefon</th>
+        <th>Wpłaty</th>
+    </tr>
+
+{% for player in list_of_players %}
+    <tr>
+        <td> {{ player.name }}</td>
+        <td> {{ player.surname }}</td>
+        <td> {{ player.description }}</td>
+        <td> {{ player.email }}</td>
+        <td> {{ player.phone }}</td>
+        <td> </td>
+
+    </tr>
+{% endfor %}
+</table>
+    </div>
+
+{% endblock %}
