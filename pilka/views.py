@@ -58,7 +58,7 @@ class AddPlayerToGame(APIView):
             # import pdb;pdb.set_trace()
             player_id = serializer.data['playerid']
             game_id = serializer.data['gameid']
-            if Series.objects.filter(new_game_id=game_id).count() < 100:
+            if Series.objects.filter(new_game_id=game_id).count() < 14:
                 Series.objects.create(player_id=player_id, new_game_id=game_id)
                 return JsonResponse(data=request.data)
             else:
@@ -75,7 +75,7 @@ class RemoveFromGame(APIView):
             game_id = serializer.data['gameid']
             p = Series.objects.get(player_id=player_id, new_game_id=game_id)
             p.delete()
-            return  JsonResponse(data=request.data)
+            return JsonResponse(data=request.data)
 
 
 class DetailPlayers(ListView):
@@ -83,6 +83,7 @@ class DetailPlayers(ListView):
     model = Player
     queryset = Player.objects.all().order_by('pk')
     template_name = 'player_list.html'
+
 
 class DetailGameView(ListView):
     context_object_name = "list_of_games"
