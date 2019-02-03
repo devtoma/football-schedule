@@ -26,7 +26,7 @@
                             onclick="addToGame('{{ player.name }}', {{ player.id }}, {{ game.id }} )"
                             name="addtogame"
                             {% if player in players_in_game %}
-                                disabled="true"
+                            disabled="true"
                             {% endif %} >
                         Zapisz się
                     </button>
@@ -34,7 +34,7 @@
                             onclick="removefromGame('{{ player.name }}', {{ player.id }}, {{ game.id }} )"
                             name="removefromgame"
                             {% if player not in players_in_game %}
-                                disabled="true"
+                            disabled="true"
                             {% endif %} >
                         Zrezygnuj
                     </button>
@@ -63,12 +63,14 @@
                 }
             }
         });
+
         function removefromGame(playername, playerid, gameid) {
             console.log(playername);
             {#$('#boisko ol').append(`<li><a href="#">${playername}</a></li>`);#}
             $(`#rem${playerid}`).prop('disabled', true);
             $(`#${playerid}`).prop('disabled', false);
-            var num_of_players = $('#listagry').children()
+            var num_of_players = $('#listagry').children();
+            console.log(num_of_players)
 
 
             $.ajax({
@@ -93,12 +95,16 @@
             {#$('#boisko ol').append(`<li><a href="#">${playername}</a></li>`);#}
             $(`#${playerid}`).prop('disabled', true);
             $(`#rem${playerid}`).prop('disabled', false);
-            var num_of_players = $('#listagry').children()
+            var num_of_players = $('#footballers').children();
+            console.log(num_of_players);
+            if (num_of_players === 3) {
+            }
 
 
             $.ajax({
                 url: '/addtogame/',
                 success: function (data) {
+
                     $('#footballers').append(`<li id="pro${playerid}">` + data.playername + '</li>');
                 },
                 data: JSON.stringify({'playerid': playerid, 'gameid': gameid, 'playername': playername}),

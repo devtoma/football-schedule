@@ -39,7 +39,9 @@ class ListPlayerView(View):
     def get(self, request):
         players = Player.objects.all()
         game = Game.objects.filter(dategame__gte=datetime.now()).order_by('dategame').first()
+        print(game)
         players_in_game = game.player.all()
+
         ctx = {
             'players': players,
             'game': game,
@@ -62,9 +64,10 @@ class AddPlayerToGame(APIView):
                 Series.objects.create(player_id=player_id, new_game_id=game_id)
                 return JsonResponse(data=request.data)
             else:
-                return Response("Brak możliwości zapisu, na aktualny mecz jest komplet graczy")
-        print(serializer.errors)
-        return Response(status=400)
+                return Response(status=400)
+        else:
+            print(serializer.errors)
+            return Response(status=400)
 
 
 class RemoveFromGame(APIView):
